@@ -23,7 +23,7 @@ DEV_NAME = "Ángel Mendoza"
 DEV_ALIAS = "Blangel"
 DEV_TITLE = "Desarrollador De Python & Godot Engine"
 DEV_SUBTITLE = (
-    "Especializado en la creación de aplicaciones de escritorio interactivas con Python y Flet, "
+    "Especializado en la creación de aplicaciones de escritorio interactivas y sistemas de automatización con Python y Flet, "
     "arquitectura e integración de bases de datos relacionales con SQL, y desarrollo de videojuegos con Godot."
 )
 
