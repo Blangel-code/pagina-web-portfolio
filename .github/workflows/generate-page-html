@@ -28,10 +28,11 @@ jobs:
 
       - name: Compilar Flet a Web (WASM)
         run: |
-          flet build web --base-url /pagina-web-portfolio/
+          flet build web --output build/web --base-url /pagina-web-portfolio/
 
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/web # Carpeta que genera Flet al compilar
           branch: gh-pages # Rama donde se subirá la web compilada
+          clean: true
