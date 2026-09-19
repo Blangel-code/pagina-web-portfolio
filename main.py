@@ -393,5 +393,5 @@ if __name__ == "__main__":
     ft.run(
         main=build_portfolio,
         view=ft.AppView.WEB_BROWSER,
-        assets_dir=str(Path(__file__).resolve().parent),
+        assets_dir=str(Path(__file__).resolve().parent / "assets"),
     )
