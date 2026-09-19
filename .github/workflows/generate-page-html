@@ -3,7 +3,7 @@ name: Deploy Flet App to GitHub Pages
 on:
   push:
     branches:
-      - main # Cambia a master si esa es tu rama principal
+      - main # O 'master', según tu rama principal
   workflow_dispatch:
 
 permissions:
@@ -45,7 +45,7 @@ jobs:
       - name: Subir artefacto compilado
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/web' # Se sube ÚNICAMENTE el resultado web
+          path: 'build/web'
 
       - name: Desplegar a GitHub Pages
         id: deployment
