@@ -3,17 +3,25 @@ name: Deploy Flet App to GitHub Pages
 on:
   push:
     branches:
-      - main # Cambia a 'master' si tu rama principal se llama master
+      - main # Cambia a master si esa es tu rama principal
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout del código
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -30,9 +38,14 @@ jobs:
         run: |
           flet build web --base-url /pagina-web-portfolio/
 
-      - name: Publicar solo la carpeta Web compilada en gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto compilado
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: build/web
-          branch: gh-pages
-          clean: true
+          path: 'build/web' # Se sube ÚNICAMENTE el resultado web
+
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
