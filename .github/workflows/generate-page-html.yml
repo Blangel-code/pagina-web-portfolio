@@ -37,7 +37,7 @@ jobs:
 
       - name: Compilar Flet a Web
         run: |
-          flet build web --base-url /pagina-web-portfolio/
+          flet build web --yes --base-url /pagina-web-portfolio/
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
