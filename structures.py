@@ -133,7 +133,7 @@ def project_card(data: ProjectCardData, page: ft.Page) -> ft.Container:
     actions = []
     if data.repo_url:
         actions.append(
-            ft.ElevatedButton(
+            ft.Button(
                 "Código en GitHub",
                 url=data.repo_url,
                 bgcolor="#8B5CF6",
