@@ -26,8 +26,7 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado:
 
 - Python 3.x
 - pip
-- (Si aplica) un entorno virtual
-- Dependencias del proyecto (si existen en `requirements.txt`)
+- flet
 
 ## Instalación
 
@@ -52,8 +51,6 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado:
    pip install -r requirements.txt
    ```
 
-> Si el proyecto no incluye un archivo `requirements.txt`, revisa la estructura del repositorio para verificar si hay otra forma de instalación o si se usa un framework específico.
-
 ## Ejecución
 
 Ejecuta la aplicación con el comando apropiado según el framework o estructura del proyecto. Por ejemplo:
@@ -62,25 +59,19 @@ Ejecuta la aplicación con el comando apropiado según el framework o estructura
 python app.py
 ```
 
-o, si tu proyecto usa un servidor web o framework:
-
-```bash
-python manage.py runserver
-```
-
-Consulta la estructura del código para encontrar el punto de entrada correcto.
-
 ## Estructura del proyecto
 
 ```text
 pagina-web-portfolio/
 ├── README.md
+├── LICENSE.txt
+├── .gitignore
 ├── requirements.txt
-├── app.py / main.py / manage.py (según el proyecto)
-├── templates/
-├── static/
-├── assets/
-└── otros archivos de configuración
+├── main.py (según el proyecto)
+├── config.py
+├── structure.py
+├── material_disponible
+└── requirements.txt
 ```
 
 ## Personalización
