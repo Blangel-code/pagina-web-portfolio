@@ -28,7 +28,7 @@ jobs:
 
       - name: Compilar Flet a Web (WASM)
         run: |
-          flet build web
+          flet build web --base-url /pagina-web-portfolio/
 
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
