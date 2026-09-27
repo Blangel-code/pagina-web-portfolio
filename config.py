@@ -34,6 +34,7 @@ EMAIL_CONTACT = "blangel.code@gmail.com"
 
 URL_PROJECT_TODO = "https://github.com/Blangel-code/to-do-list"
 URL_PROJECT_GAME = "https://blangel.itch.io/"
+URL_PROJECT_LIBRARY = "https://github.com/Blangel-code/sistema-de-gestion-de-biblioteca"
 
 # ==============================================================================
 # RUTAS DE RECURSOS (MATERIALES DISPONIBLES)
@@ -50,8 +51,13 @@ ICON_GITHUB = "material_disponible/github-142-svgrepo-com.svg"
 ICON_VSCODE = "material_disponible/vscode-svgrepo-com.svg"
 ICON_ITCHIO = "material_disponible/itch-io-svgrepo-com.svg"
 ICON_TWITTER = "material_disponible/X-logo(twitter).svg"
+ICON_N8N = "material_disponible/n8n-color.svg"
 
 # Capturas de proyectos
 IMG_PROJECT_TODO = "material_disponible/proyecto-lista-de-tareas.png"
 IMG_PROJECT_GAME_1 = "material_disponible/proyecto-the-decimal-dungeon-abyss-1.png"
 IMG_PROJECT_GAME_2 = "material_disponible/proyecto-the-decimal-dungeon-abyss-2.png"
+IMG_PROJECT_LIBRARY_1 = "material_disponible/proyecto-biblioteca-1.png"
+IMG_PROJECT_LIBRARY_2 = "material_disponible/proyecto-biblioteca-2.png"
+IMG_PROJECT_LIBRARY_3 = "material_disponible/proyecto-biblioteca-3.png"
+IMG_PROJECT_LIBRARY_4 = "material_disponible/proyecto-biblioteca-4.png"

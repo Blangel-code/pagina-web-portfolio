@@ -27,6 +27,7 @@ from config import (
     ICON_TKINTER,
     ICON_TWITTER,
     ICON_VSCODE,
+    ICON_N8N,
     IMG_PROJECT_GAME_1,
     IMG_PROJECT_GAME_2,
     IMG_PROJECT_TODO,
@@ -36,6 +37,11 @@ from config import (
     URL_PROJECT_GAME,
     URL_PROJECT_TODO,
     URL_TWITTER,
+    URL_PROJECT_LIBRARY,
+    IMG_PROJECT_LIBRARY_1,
+    IMG_PROJECT_LIBRARY_2,
+    IMG_PROJECT_LIBRARY_3,
+    IMG_PROJECT_LIBRARY_4
 )
 from structures import ProjectCardData, SkillCardData, SocialLinkData, create_social_button, project_card, skill_card
 
@@ -265,6 +271,11 @@ def build_portfolio(page: ft.Page) -> None:
             icon=ICON_VSCODE,
             description="Entorno de desarrollo práctico y moderno para escribir, depurar y mantener proyectos de software con claridad.",
         ),
+        SkillCardData(
+            title="N8N",
+            icon=ICON_N8N,
+            description="Software de automatización de flujos de trabajos repetitivos, chatbots y asistentes virtuales.",
+        ),
     ]
 
     skills_grid = ft.GridView(
@@ -295,6 +306,14 @@ def build_portfolio(page: ft.Page) -> None:
             tags=("Godot", "GDScript", "Pixel Art", "Roguelite"),
             repo_url=None,
             demo_url=URL_PROJECT_GAME,
+        ),
+        ProjectCardData(
+            title="SIstema De Gestión De Biblioteca",
+            images=(IMG_PROJECT_LIBRARY_1, IMG_PROJECT_LIBRARY_2, IMG_PROJECT_LIBRARY_3, IMG_PROJECT_LIBRARY_4),
+            description="Aplicación para tener un inventario, obetener reportes y realizar prestamos de libros a usuarios, cuenta con avisos de retrasos y usa una base de datos SQLite local.",
+            tags=("Python", "Flet", "SQLite", "Finanzas", "Productividad"),
+            repo_url=URL_PROJECT_LIBRARY,
+            demo_url=None,
         ),
     ]
 
