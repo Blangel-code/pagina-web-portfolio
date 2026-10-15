@@ -41,7 +41,9 @@ from config import (
     IMG_PROJECT_LIBRARY_1,
     IMG_PROJECT_LIBRARY_2,
     IMG_PROJECT_LIBRARY_3,
-    IMG_PROJECT_LIBRARY_4
+    IMG_PROJECT_LIBRARY_4,
+    IMG_PROJECT_CHATBOT_1,
+    IMG_PROJECT_CHATBOT_2
 )
 from structures import ProjectCardData, SkillCardData, SocialLinkData, create_social_button, project_card, skill_card
 
@@ -308,11 +310,19 @@ def build_portfolio(page: ft.Page) -> None:
             demo_url=URL_PROJECT_GAME,
         ),
         ProjectCardData(
-            title="SIstema De Gestión De Biblioteca",
+            title="Sistema De Gestión De Biblioteca",
             images=(IMG_PROJECT_LIBRARY_1, IMG_PROJECT_LIBRARY_2, IMG_PROJECT_LIBRARY_3, IMG_PROJECT_LIBRARY_4),
             description="Aplicación para tener un inventario, obetener reportes y realizar prestamos de libros a usuarios, cuenta con avisos de retrasos y usa una base de datos SQLite local.",
             tags=("Python", "Flet", "SQLite", "Finanzas", "Productividad"),
             repo_url=URL_PROJECT_LIBRARY,
+            demo_url=None,
+        ),
+        ProjectCardData(
+            title="ChatBot Para WhatsApp",
+            images=(IMG_PROJECT_CHATBOT_1, IMG_PROJECT_CHATBOT_2),
+            description="Un Bot Funcional Para WhatsApp Capaz de Conectarse A Una Base De Datos Dar Respuestas Con Informaciòn De Allí Y Pudiendo Recordar Conversaciones Anteriores. Creado Con N8N.",
+            tags=("N8N", "Automatización", "Bot", "Finanzas", "Productividad", "Clientes"),
+            repo_url=None,
             demo_url=None,
         ),
     ]
