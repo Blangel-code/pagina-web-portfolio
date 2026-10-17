@@ -130,7 +130,7 @@ def build_portfolio(page: ft.Page) -> None:
                 ft.Text("Hola, soy ", size=22, color=COLOR_TEXT_MUTED),
                 hero_name,
                 hero_title,
-                ft.Text(DEV_SUBTITLE, size=16, color="#C4B5FD", max_lines=4),
+                ft.Text(DEV_SUBTITLE, size=16, color="#C4B5FD"),
                 ft.Row(
                     controls=[
                         ft.Button(
@@ -371,13 +371,18 @@ def build_portfolio(page: ft.Page) -> None:
         key=ft.ScrollKey("contacto"),
     )
 
+    footer_text = ft.Text(
+        "© 2026 Ángel Mendoza. Diseñado y desarrollado en Python.",
+        color="#C4B5FD",
+        text_align=ft.TextAlign.CENTER,
+    )
+    footer_row = ft.Row(
+        controls=[footer_text],
+        alignment=ft.MainAxisAlignment.CENTER,
+        wrap=True,
+    )
     footer = ft.Container(
-        content=ft.Row(
-            controls=[
-                ft.Text("© 2026 Ángel Mendoza. Diseñado y desarrollado en Python.", color="#C4B5FD"),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-        ),
+        content=footer_row,
         padding=18,
         margin=ft.Margin.only(bottom=25),
     )
@@ -452,6 +457,8 @@ def build_portfolio(page: ft.Page) -> None:
                 image.height = carousel.height
         contact_card.width = content_width
         footer.width = content_width
+        footer_text.width = max(content_width - 36, 0)
+        footer_row.width = max(content_width - 36, 0)
         page.update()
 
     page.on_resize = resize_layout
