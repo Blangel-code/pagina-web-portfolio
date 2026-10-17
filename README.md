@@ -2,6 +2,9 @@
 
 Este repositorio contiene una página web personal donde se muestra información sobre mí, mis habilidades y mis proyectos.
 
+<img width="1233" height="347" alt="image" src="https://github.com/user-attachments/assets/dc8d3f92-7bbf-4371-95f6-c65b412444e8" />
+<img width="542" height="586" alt="image" src="https://github.com/user-attachments/assets/1c3325b3-cb96-4383-b26a-9b837d950680" />
+
 ## Descripción
 
 La aplicación está diseñada como un portfolio profesional para presentar:
