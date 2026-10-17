@@ -107,7 +107,7 @@ async def rotate_carousel(carousel: ft.PageView, image_count: int) -> None:
         await carousel.go_to_page(current_index, animation_duration=700)
 
 
-def project_card(data: ProjectCardData, page: ft.Page) -> ft.Container:
+def project_card(data: ProjectCardData, page: ft.Page) -> tuple[ft.Container, ft.PageView]:
     """Genera la tarjeta de proyecto con vista previa, etiquetas y acciones."""
     tags_row = ft.Row(
         controls=[
@@ -157,13 +157,13 @@ def project_card(data: ProjectCardData, page: ft.Page) -> ft.Container:
             ft.Image(
                 src=image,
                 fit=ft.BoxFit.COVER,
-                width=500,
+                width=482,
                 height=260,
                 border_radius=12,
             )
             for image in data.images
         ],
-        width=500,
+        width=482,
         height=260,
         selected_index=0,
         viewport_fraction=1,
@@ -172,7 +172,7 @@ def project_card(data: ProjectCardData, page: ft.Page) -> ft.Container:
     if len(data.images) > 1:
         page.run_task(rotate_carousel, carousel, len(data.images))
 
-    return wrap_in_container(
+    card = wrap_in_container(
         ft.Column(
             controls=[
                 carousel,
@@ -186,3 +186,4 @@ def project_card(data: ProjectCardData, page: ft.Page) -> ft.Container:
         ),
         width=520,
     )
+    return card, carousel

@@ -55,6 +55,7 @@ def build_portfolio(page: ft.Page) -> None:
     page.bgcolor = COLOR_BG_DARK
     page.padding = 0
     page.scroll = ft.ScrollMode.AUTO
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.fonts = {
         "Urbanist": "https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
     }
@@ -75,39 +76,38 @@ def build_portfolio(page: ft.Page) -> None:
         border_radius=18,
     )
 
+    brand_name = ft.Text(DEV_ALIAS, size=30, weight=ft.FontWeight.BOLD, color=COLOR_TEXT_PRIMARY)
+    brand = ft.Row(
+        controls=[profile_image, brand_name],
+        spacing=10,
+        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+    )
+    nav_buttons = [
+        ft.TextButton("Sobre mí", on_click=navigate_to("sobre-mi")),
+        ft.TextButton("Habilidades", on_click=navigate_to("habilidades")),
+        ft.TextButton("Proyectos", on_click=navigate_to("proyectos")),
+        ft.TextButton("Contacto", on_click=navigate_to("contacto")),
+    ]
+    nav_links = ft.Row(
+        controls=nav_buttons,
+        spacing=10,
+    )
+    desktop_nav_content = ft.Row(
+        controls=[brand, nav_links],
+        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+    )
+    mobile_nav_content = ft.Column(
+        controls=[
+            brand,
+            ft.Row(controls=nav_buttons[:2], spacing=0),
+            ft.Row(controls=nav_buttons[2:], spacing=0),
+        ],
+        spacing=0,
+        horizontal_alignment=ft.CrossAxisAlignment.START,
+    )
     nav_bar = ft.Container(
-        content=ft.Row(
-            controls=[
-                ft.Row(
-                    controls=[profile_image, ft.Text(DEV_ALIAS, size=30, weight=ft.FontWeight.BOLD, color=COLOR_TEXT_PRIMARY)],
-                    spacing=10,
-                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                ),
-                ft.Row(
-                    controls=[
-                        ft.TextButton(
-                            "Sobre mí",
-                            on_click=navigate_to("sobre-mi"),
-                        ),
-                        ft.TextButton(
-                            "Habilidades",
-                            on_click=navigate_to("habilidades"),
-                        ),
-                        ft.TextButton(
-                            "Proyectos",
-                            on_click=navigate_to("proyectos"),
-                        ),
-                        ft.TextButton(
-                            "Contacto",
-                            on_click=navigate_to("contacto"),
-                        ),
-                    ],
-                    spacing=10,
-                ),
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-        ),
+        content=desktop_nav_content,
         width=1200,
         padding=12,
         margin=ft.Margin(top=18),
@@ -122,12 +122,14 @@ def build_portfolio(page: ft.Page) -> None:
         ),
     )
 
+    hero_name = ft.Text(DEV_NAME, size=50, weight=ft.FontWeight.BOLD, color=COLOR_TEXT_PRIMARY)
+    hero_title = ft.Text(DEV_TITLE, size=28, weight=ft.FontWeight.W_600, color=COLOR_SECONDARY)
     hero = ft.Container(
         content=ft.Column(
             controls=[
                 ft.Text("Hola, soy ", size=22, color=COLOR_TEXT_MUTED),
-                ft.Text(DEV_NAME, size=50, weight=ft.FontWeight.BOLD, color=COLOR_TEXT_PRIMARY),
-                ft.Text(DEV_TITLE, size=28, weight=ft.FontWeight.W_600, color=COLOR_SECONDARY),
+                hero_name,
+                hero_title,
                 ft.Text(DEV_SUBTITLE, size=16, color="#C4B5FD", max_lines=4),
                 ft.Row(
                     controls=[
@@ -146,12 +148,12 @@ def build_portfolio(page: ft.Page) -> None:
                             style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=14)),
                         ),
                     ],
+                    wrap=True,
                     spacing=18,
                 ),
             ],
             spacing=16,
             horizontal_alignment=ft.CrossAxisAlignment.START,
-            width=560,
         ),
         padding=30,
     )
@@ -201,6 +203,7 @@ def build_portfolio(page: ft.Page) -> None:
 
     hero_section = ft.Row(
         controls=[hero, code_preview],
+        wrap=True,
         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
         width=1200,
@@ -233,7 +236,6 @@ def build_portfolio(page: ft.Page) -> None:
         border_radius=26,
         bgcolor="#160C29",
         border=ft.Border.all(1, COLOR_BORDER),
-        width=1200,
         key=ft.ScrollKey("sobre-mi"),
     )
 
@@ -287,7 +289,6 @@ def build_portfolio(page: ft.Page) -> None:
         spacing=14,
         run_spacing=14,
         controls=[skill_card(item) for item in skill_cards],
-        width=1200,
         height=300,
         key=ft.ScrollKey("habilidades"),
     )
@@ -327,17 +328,19 @@ def build_portfolio(page: ft.Page) -> None:
         ),
     ]
 
+    project_card_controls = [project_card(item, page) for item in project_items]
+    projects_row = ft.Row(
+        controls=[card for card, _ in project_card_controls],
+        wrap=True,
+        spacing=22,
+        key=ft.ScrollKey("proyectos"),
+        run_spacing=22,
+        width=1200,
+    )
     projects_content = ft.Column(
         controls=[
             ft.Text("Proyectos", size=30, weight=ft.FontWeight.BOLD, color=COLOR_TEXT_PRIMARY),
-            ft.Row(
-                controls=[project_card(item, page) for item in project_items],
-                wrap=True,
-                spacing=22,
-                key=ft.ScrollKey("proyectos"),
-                run_spacing=22,
-                width=1200,
-            ),
+            projects_row,
         ],
         spacing=22,
     )
@@ -362,7 +365,6 @@ def build_portfolio(page: ft.Page) -> None:
             horizontal_alignment=ft.CrossAxisAlignment.START,
         ),
         padding=26,
-        width=1200,
         border_radius=26,
         bgcolor="#160C29",
         border=ft.Border.all(1, COLOR_BORDER),
@@ -376,7 +378,6 @@ def build_portfolio(page: ft.Page) -> None:
             ],
             alignment=ft.MainAxisAlignment.CENTER,
         ),
-        width=1200,
         padding=18,
         margin=ft.Margin.only(bottom=25),
     )
@@ -398,13 +399,63 @@ def build_portfolio(page: ft.Page) -> None:
             ft.Container(height=25),
             footer,
         ],
-        width=1280,
         alignment=ft.MainAxisAlignment.START,
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         spacing=0,
     )
 
     page.add(main_stack)
+
+    def resize_layout(_: ft.ControlEvent | None = None) -> None:
+        viewport_width = page.width or 1280
+        content_width = min(max(viewport_width - 32, 0), 1200)
+        is_mobile = viewport_width < 700
+        is_compact = viewport_width < 1050
+        columns = 1 if is_mobile else 2 if viewport_width < 1000 else 3
+        skill_cell_width = (content_width - 14 * (columns - 1)) / columns
+        skill_cell_width = min(skill_cell_width, skills_grid.max_extent)
+        skill_rows = (len(skill_cards) + columns - 1) // columns
+
+        main_stack.width = content_width
+        nav_bar.width = content_width
+        nav_bar.padding = 8 if is_mobile else 12
+        nav_bar.content = mobile_nav_content if is_mobile else desktop_nav_content
+        mobile_nav_content.width = max(content_width - 16, 0)
+        profile_image.width = 42 if is_mobile else 56
+        profile_image.height = 42 if is_mobile else 56
+        brand_name.size = 24 if is_mobile else 30
+        nav_links.spacing = 10
+        hero_section.width = content_width
+        hero.width = content_width if is_compact else 560
+        hero.padding = 20 if is_mobile else 30
+        hero_name.size = 36 if is_mobile else 50
+        hero_title.size = 22 if is_mobile else 28
+        code_preview.width = content_width if is_compact else 430
+        about_content.width = content_width
+        skills_grid.width = content_width
+        skills_grid.runs_count = columns
+        skills_grid.height = skill_rows * (skill_cell_width / skills_grid.child_aspect_ratio) + 14 * (skill_rows - 1)
+        projects_row.width = content_width
+        project_width = (
+            content_width
+            if viewport_width < 900
+            else min(520, (content_width - projects_row.spacing) / 2)
+            if viewport_width < 1200
+            else 520
+        )
+        for card, carousel in project_card_controls:
+            card.width = project_width
+            carousel.width = max(project_width - 38, 0)
+            carousel.height = 190 if is_mobile else 260
+            for image in carousel.controls:
+                image.width = carousel.width
+                image.height = carousel.height
+        contact_card.width = content_width
+        footer.width = content_width
+        page.update()
+
+    page.on_resize = resize_layout
+    resize_layout()
 
 
 if __name__ == "__main__":

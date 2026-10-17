@@ -11,6 +11,7 @@ La aplicación está diseñada como un portfolio profesional para presentar:
 - Proyectos realizados.
 - Experiencia o formación relevante.
 - Enlaces a redes sociales, repositorios o recursos adicionales.
+- Diseño adaptable a móviles, tabletas y escritorio.
 
 ## Objetivo
 
