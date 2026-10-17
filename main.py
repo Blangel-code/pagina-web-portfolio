@@ -141,7 +141,7 @@ def build_portfolio(page: ft.Page) -> None:
                         ),
                         ft.OutlinedButton(
                             "Descargar CV",
-                            url="https://drive.google.com/",
+                            url="https://drive.google.com/file/d/1Tm-4IE8M8WO2eed_B1n-uBJ09EbaDazp/view?usp=sharing",
                             icon=ft.Icons.DOWNLOAD,
                             style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=14)),
                         ),
@@ -356,17 +356,6 @@ def build_portfolio(page: ft.Page) -> None:
                 ft.Row(
                     controls=[create_social_button(item) for item in social_links],
                     spacing=12,
-                ),
-                ft.TextField(label="Nombre", width=500, border_color=COLOR_PRIMARY_LIGHT),
-                ft.TextField(label="Correo electrónico", width=500, border_color=COLOR_PRIMARY_LIGHT),
-                ft.TextField(label="Mensaje", multiline=True, min_lines=5, max_lines=8, width=500, border_color=COLOR_PRIMARY_LIGHT),
-                ft.Button(
-                    "Enviar mensaje",
-                    icon=ft.Icons.SEND,
-                    bgcolor=COLOR_PRIMARY,
-                    color=COLOR_TEXT_PRIMARY,
-                    style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=14)),
-                    width=180,
                 ),
             ],
             spacing=18,
