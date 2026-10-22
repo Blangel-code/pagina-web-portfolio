@@ -1,5 +1,7 @@
 # Portafolio Personal
 
+[![Deploy Flet App to GitHub Pages](https://github.com/Blangel-code/pagina-web-portfolio/actions/workflows/generate-page-html.yml/badge.svg)](https://github.com/Blangel-code/pagina-web-portfolio/actions/workflows/generate-page-html.yml)
+
 Este repositorio contiene una página web personal donde se muestra información sobre mí, mis habilidades y mis proyectos.
 
 <img width="1233" height="347" alt="image" src="https://github.com/user-attachments/assets/dc8d3f92-7bbf-4371-95f6-c65b412444e8" />
