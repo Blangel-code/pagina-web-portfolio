@@ -48,6 +48,105 @@ from config import (
 from structures import ProjectCardData, SkillCardData, SocialLinkData, create_social_button, project_card, skill_card
 
 
+SPANISH_TO_ENGLISH = {
+        "Blangel | Portafolio": "Blangel | Portfolio",
+        "Sobre mí": "About Me",
+        "Habilidades": "Skills",
+        "Proyectos": "Projects",
+        "Contacto": "Contact",
+        "Hola, soy ": "Hello, I'm ",
+        "Desarrollador De Python & Godot Engine": "Python & Godot Engine Developer",
+        (
+            "Especializado en la creación de aplicaciones de escritorio interactivas y sistemas de automatización con Python y Flet, "
+            "arquitectura e integración de bases de datos relacionales con SQL, y desarrollo de videojuegos con Godot."
+        ): (
+            "Specialized in creating interactive desktop applications and automation systems with Python and Flet, "
+            "relational database architecture and integration with SQL, and video game development with Godot."
+        ),
+        "Ver Proyectos": "View Projects",
+        "Descargar CV": "Download Resume",
+        "Lista de tareas": "To-do list",
+        "Me apasiona resolver problemas reales con código y transformar ideas en experiencias útiles, claras y visualmente impactantes.": (
+            "I'm passionate about solving real-world problems with code and turning ideas into useful, clear, and visually engaging experiences."
+        ),
+        (
+            "Mi camino en programación me ha llevado a trabajar con Python, SQL, Flet, Tkinter y Godot, enfocado en construir herramientas de gestión, "
+            "interfaces funcionales y videojuegos con personalidad. Me interesa la lógica, pero también la claridad del producto final y la experiencia del usuario."
+        ): (
+            "My programming journey has led me to work with Python, SQL, Flet, Tkinter, and Godot, focusing on building management tools, "
+            "functional interfaces, and distinctive video games. I'm interested in logic, but also in the clarity of the final product and the user experience."
+        ),
+        (
+            "Busco seguir creciendo con proyectos prácticos, aprender de cada reto y crear soluciones que ayuden a personas, equipos o negocios "
+            "a trabajar mejor y ver resultados concretos."
+        ): (
+            "I'm looking to keep growing through hands-on projects, learn from every challenge, and create solutions that help people, teams, "
+            "and businesses work better and achieve tangible results."
+        ),
+        "Habilidades técnicas": "Technical Skills",
+        "Desarrollo backend, automatización, lógica de negocio y aplicaciones interactivas con enfoque en rendimiento y mantenibilidad.": (
+            "Backend development, automation, business logic, and interactive applications focused on performance and maintainability."
+        ),
+        "Diseño de esquemas, consultas relacionales, integración de SQLite y arquitectura de datos aplicando buenas prácticas.": (
+            "Schema design, relational queries, SQLite integration, and data architecture built around best practices."
+        ),
+        "Creación de interfaces modernas y multiplataforma con Python, enfocadas en usabilidad y experiencia visual limpia.": (
+            "Building modern, cross-platform interfaces with Python, focused on usability and a clean visual experience."
+        ),
+        "Desarrollo de aplicaciones de escritorio con interfaces funcionales y rápidas de prototipar para tareas del día a día.": (
+            "Developing desktop applications with functional interfaces that are quick to prototype for everyday tasks."
+        ),
+        "Programación de juegos en GDScript, lógica de gameplay, sistemas de progreso y proyectos pensados para navegador y móvil.": (
+            "Game programming in GDScript, gameplay logic, progression systems, and projects designed for browsers and mobile devices."
+        ),
+        "Control de versiones, trabajo colaborativo, flujo de ramas y publicación de proyectos con organización profesional.": (
+            "Version control, collaboration, branching workflows, and project publishing with professional organization."
+        ),
+        "Entorno de desarrollo práctico y moderno para escribir, depurar y mantener proyectos de software con claridad.": (
+            "A practical, modern development environment for writing, debugging, and maintaining software projects."
+        ),
+        "Software de automatización de flujos de trabajos repetitivos, chatbots y asistentes virtuales.": (
+            "Automation software for repetitive workflows, chatbots, and virtual assistants."
+        ),
+        "Lista de Tareas": "To-do List",
+        (
+            "Aplicación para organizar tareas diarias con filtros, edición, eliminación, notificaciones nativas en Windows y almacenamiento local con SQLite."
+        ): (
+            "An app for organizing daily tasks with filters, editing, deletion, native Windows notifications, and local SQLite storage."
+        ),
+        (
+            "Juego roguelite pixel-art con mecánicas de progreso, dificultad creciente y experiencia jugable pensada para navegador, Windows y móvil."
+        ): (
+            "A pixel-art roguelite with progression mechanics, increasing difficulty, and gameplay designed for browsers, Windows, and mobile devices."
+        ),
+        "Sistema De Gestión De Biblioteca": "Library Management System",
+        (
+            "Aplicación para tener un inventario, obetener reportes y realizar prestamos de libros a usuarios, cuenta con avisos de retrasos "
+            "y usa una base de datos SQLite local."
+        ): (
+            "An app for managing an inventory, generating reports, and lending books to users. It includes overdue notices and uses a local SQLite database."
+        ),
+        "ChatBot Para WhatsApp": "WhatsApp Chatbot",
+        (
+            "Un Bot Funcional Para WhatsApp Capaz de Conectarse A Una Base De Datos Dar Respuestas Con Informaciòn De Allí Y Pudiendo "
+            "Recordar Conversaciones Anteriores. Creado Con N8N."
+        ): (
+            "A functional WhatsApp bot that connects to a database, answers questions using its information, and remembers previous conversations. Built with n8n."
+        ),
+        "Productividad": "Productivity",
+        "Automatización": "Automation",
+        "Finanzas": "Finance",
+        "Clientes": "Customers",
+        "Código en GitHub": "Source Code on GitHub",
+        "Ver proyecto": "View Project",
+        "Correo": "Email",
+        "© 2026 Ángel Mendoza. Diseñado y desarrollado en Python.": (
+            "© 2026 Ángel Mendoza. Designed and developed in Python."
+        ),
+}
+ENGLISH_TO_SPANISH = {translation: original for original, translation in SPANISH_TO_ENGLISH.items()}
+
+
 def build_portfolio(page: ft.Page) -> None:
     page.title = "Blangel | Portafolio"
     page.window_width = 1280
@@ -92,8 +191,19 @@ def build_portfolio(page: ft.Page) -> None:
         controls=nav_buttons,
         spacing=10,
     )
+    current_language = "es"
+    language_button = ft.OutlinedButton(
+        "English",
+        on_click=None,
+        style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=12)),
+    )
+    desktop_nav_actions = ft.Row(
+        controls=[nav_links, language_button],
+        spacing=10,
+        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+    )
     desktop_nav_content = ft.Row(
-        controls=[brand, nav_links],
+        controls=[brand, desktop_nav_actions],
         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
     )
@@ -101,7 +211,7 @@ def build_portfolio(page: ft.Page) -> None:
         controls=[
             brand,
             ft.Row(controls=nav_buttons[:2], spacing=0),
-            ft.Row(controls=nav_buttons[2:], spacing=0),
+            ft.Row(controls=[*nav_buttons[2:], language_button], spacing=0),
         ],
         spacing=0,
         horizontal_alignment=ft.CrossAxisAlignment.START,
@@ -410,6 +520,34 @@ def build_portfolio(page: ft.Page) -> None:
     )
 
     page.add(main_stack)
+
+    def toggle_language(_: ft.ControlEvent) -> None:
+        nonlocal current_language
+        current_language = "en" if current_language == "es" else "es"
+        translations = SPANISH_TO_ENGLISH if current_language == "en" else ENGLISH_TO_SPANISH
+        pending_controls = list(page.controls)
+        visited_controls = set()
+
+        while pending_controls:
+            control = pending_controls.pop()
+            if id(control) in visited_controls:
+                continue
+            visited_controls.add(id(control))
+
+            for attribute in ("value", "content", "label", "tooltip"):
+                value = getattr(control, attribute, None)
+                if isinstance(value, str) and value in translations:
+                    setattr(control, attribute, translations[value])
+                elif isinstance(value, ft.Control):
+                    pending_controls.append(value)
+
+            pending_controls.extend(getattr(control, "controls", []))
+
+        page.title = "Blangel | Portafolio" if current_language == "es" else "Blangel | Portfolio"
+        language_button.content = "Español" if current_language == "en" else "English"
+        page.update()
+
+    language_button.on_click = toggle_language
 
     def resize_layout(_: ft.ControlEvent | None = None) -> None:
         viewport_width = page.width or 1280
